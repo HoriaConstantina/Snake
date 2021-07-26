@@ -8,8 +8,7 @@ public class Game {
     public void startGame() {
         board = new Board();
         board.createBoard();
-        snake = new Snake();
-        snake.generateSnake();
-        snake.startingPosition();
+        board.updateBoard();
+
     }
 }

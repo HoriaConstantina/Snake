@@ -2,19 +2,28 @@ package org.snake;
 
 public class Snake {
 
-    public void generateSnake() {
-        int snakeHead = 1;
-        int snakeTail = 3;
+    int x = 0;
+    int y = 0;
 
-        char[][] snake = new char[snakeHead][snakeTail];
-        snake[0][0] = 'x';
-        snake[0][1] = 'x';
-        snake[0][2] = 'x';
+    public int positionX(int x) {
+        x = x + (int)(Math.random() * 8);
+        return x;
     }
 
-    public char[][] position(int x, int y) {
-        x = (int)(Math.random() * 8);
-        y = (int)(Math.random() * 36);
-        return new char[x][y];
+    public int positionY(int y) {
+        y = y + (int)(Math.random() * 36);
+        return y;
+    }
+
+    public int[] updatedPosition(int x, int y){
+        int temp[] = new int[2];
+        temp[0] = x;
+        temp[1] = y;
+        return temp;
+    }
+
+
+    public void gameOver() {
+        System.out.println("You've lost! Try again sucker");
     }
 }

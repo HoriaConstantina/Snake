@@ -1,6 +1,7 @@
 package org.snake;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Board {
 
@@ -18,6 +19,14 @@ public class Board {
 
     int[] foodGenerated = new int[2];
 
+    Scanner scanner = new Scanner(System.in);
+    char newMove = ' ';
+    int counter = 0;
+
+
+    public void printScore() {
+        System.out.println("Food eaten: " + counter);
+    }
 
     public void createBoard() {
 
@@ -90,6 +99,16 @@ public class Board {
             System.out.println();
         }
         System.out.println();
+
+        System.out.println("Please enter your next move (w, a, s or d): ");
+        newMove = scanner.next().toLowerCase().charAt(0);
+        if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
+            System.out.println("Please only choose the 4 provided letters!");
+        }
+        else {
+            newMove = scanner.next().toLowerCase().charAt(0);
+        }
+
     }
 
     public void updateBoard() {
@@ -98,15 +117,17 @@ public class Board {
         boolean isHeadHorizontalLeft;
         boolean isHeadHorizontalRight;
 
-        isHeadVerticalTop = snake.checkIfVerticalWithHeadOnTop(snakeHead[0], body1[0], body2[0]);
-        isHeadVerticalBottom = snake.checkIfVerticalWithHeadOnBottom(snakeHead[0], body1[0], body2[0]);
-        isHeadHorizontalRight = snake.checkIfHorizontalWithHeadOnRight(snakeHead[1], body1[1], body2[1]);
-        isHeadHorizontalLeft = snake.checkIfHorizontalWithHeadOnLeft(snakeHead[1], body1[1], body2[1]);
+        isHeadVerticalTop = snake.checkIfVerticalWithHeadOnTop(snakeHead[0], body1[0]);
+        isHeadVerticalBottom = snake.checkIfVerticalWithHeadOnBottom(snakeHead[0], body1[0]);
+        isHeadHorizontalRight = snake.checkIfHorizontalWithHeadOnRight(snakeHead[1], body1[1]);
+        isHeadHorizontalLeft = snake.checkIfHorizontalWithHeadOnLeft(snakeHead[1], body1[1]);
 
-        board[body2[0]][body2[1]] = '-';
+        if (newMove == 'a' || newMove == 'd' || newMove == 'w' || newMove == 's'){
+            board[body2[0]][body2[1]] = '-';
+        }
 
 
-        char userMove = 'a';
+        char userMove = newMove;
 
 
         if (isHeadVerticalTop && userMove == 's') {
@@ -161,6 +182,18 @@ public class Board {
                     break;
             }
 
+            if (snakeHead[0] == foodGenerated[0] && snakeHead[1] == foodGenerated[1]) {
+                counter++;
+                food.generateFood(foodGenerated);
+
+                if (foodGenerated[0] == snakeHead[0] || foodGenerated[0] == body1[0] || foodGenerated[0] == body2[0] || foodGenerated[1] == snakeHead[1] || foodGenerated[1] == body1[1] || foodGenerated[1] == body2[1]) {
+                    food.generateFood(foodGenerated);
+                    board[foodGenerated[0]] [foodGenerated[1]] = '*';
+                }
+                else {
+                    board[foodGenerated[0]] [foodGenerated[1]] = '*';
+                }
+            }
 
             for (int i = 0; i < numberOfRows; i++) {
                 for (int j = 0; j < numberOfColumns; j++) {
@@ -169,6 +202,22 @@ public class Board {
                 System.out.println();
             }
         }
+
+
+        printScore();
+        System.out.println();
+        System.out.println("##############################################");
+        System.out.println();
+        System.out.println("Please enter your next move (w, a, s or d): ");
+        newMove = scanner.next().toLowerCase().charAt(0);
+        if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
+            System.out.println("Please only choose the 4 provided letters!");
+        }
+        else {
+            newMove = scanner.next().toLowerCase().charAt(0);
+        }
+
+
     }
         public void gameOver () {
             System.out.println("GAME OVER!");

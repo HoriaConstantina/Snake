@@ -19,31 +19,31 @@ public class Snake {
         return temp;
     }
 
-    public boolean checkIfVerticalWithHeadOnTop(int x, int x1, int x2) {
-        if (x + 1 == x1 && x1 + 1 == x2) {
+    public boolean checkIfVerticalWithHeadOnTop(int x, int x1) {
+        if (x + 1 == x1) {
             return true;
         }
 
         return false;
     }
 
-    public boolean checkIfVerticalWithHeadOnBottom(int x, int x1, int x2) {
-        if (x - 1 == x1 && x1 - 1 == x2) {
+    public boolean checkIfVerticalWithHeadOnBottom(int x, int x1) {
+        if (x - 1 == x1) {
             return true;
         }
         return false;
     }
 
-    public boolean checkIfHorizontalWithHeadOnRight(int y, int y1, int y2) {
-        if (y - 1 == y1 && y1 - 1 == y2) {
+    public boolean checkIfHorizontalWithHeadOnRight(int y, int y1) {
+        if (y - 1 == y1) {
             return true;
         }
 
         return false;
     }
 
-    public boolean checkIfHorizontalWithHeadOnLeft(int y, int y1, int y2) {
-        if (y + 1 == y1 && y1 + 1 == y2) {
+    public boolean checkIfHorizontalWithHeadOnLeft(int y, int y1) {
+        if (y + 1 == y1) {
             return true;
         }
         return false;

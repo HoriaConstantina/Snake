@@ -22,6 +22,8 @@ public class Board {
     Scanner scanner = new Scanner(System.in);
     char newMove = ' ';
     int counter = 0;
+    String word = "";
+    char userMove = ' ';
 
 
     public void printScore() {
@@ -38,14 +40,13 @@ public class Board {
         x = snake.positionX(x);
         y = snake.positionY(y);
 
-        snakeHead[0] = x;
-        snakeHead[1] = y;
+        snakeHead = snake.updatedPosition(x, y);
 
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
                 if (i == x && j == y) {
-                    board[i][j] = 'X';
                     if (!(i > numberOfRows - 3) && (!(j > numberOfColumns - 3))) {
+                        board[i][j] = 'X';
                         double random = Math.random() * 10;
                         if (random <= 5) {
                             board[i][j + 1] = 'x';
@@ -60,9 +61,7 @@ public class Board {
                         }
                     } else {
                         if (i <= numberOfRows - 2 || j <= numberOfColumns - 2) {
-                            board[i][j] = '-';
                             board[i - 2][j - 2] = 'X';
-
                             snakeHead = snake.updatedPosition(i-2, j-2);
 
                             double random = Math.random() * 10;
@@ -100,13 +99,22 @@ public class Board {
         }
         System.out.println();
 
+        printScore();
+        System.out.println();
+        System.out.println("##############################################");
+        System.out.println();
         System.out.println("Please enter your next move (w, a, s or d): ");
-        newMove = scanner.next().toLowerCase().charAt(0);
-        if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
-            System.out.println("Please only choose the 4 provided letters!");
+        word = scanner.next().toLowerCase();
+        newMove = word.charAt(0);
+        if (word.length() >= 2) {
+            System.out.println(word + " is a word! ");
+            newMove = ' ';
+            System.out.println("You cannot type words! Please only choose the 4 provided letters!");
         }
         else {
-            newMove = scanner.next().toLowerCase().charAt(0);
+            if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
+                System.out.println("Please only choose the 4 provided letters!");
+            }
         }
 
     }
@@ -126,9 +134,7 @@ public class Board {
             board[body2[0]][body2[1]] = '-';
         }
 
-
-        char userMove = newMove;
-
+        userMove = newMove;
 
         if (isHeadVerticalTop && userMove == 's') {
             System.out.println("Wrong Direction! Please use another key for movement");
@@ -209,19 +215,21 @@ public class Board {
         System.out.println("##############################################");
         System.out.println();
         System.out.println("Please enter your next move (w, a, s or d): ");
-        newMove = scanner.next().toLowerCase().charAt(0);
-        if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
-            System.out.println("Please only choose the 4 provided letters!");
+        word = scanner.next().toLowerCase();
+        newMove = word.toLowerCase().charAt(0);
+        if (word.length() >= 2) {
+            newMove = ' ';
+            System.out.println("You cannot type words! Please only choose the 4 provided letters!");
         }
         else {
-            newMove = scanner.next().toLowerCase().charAt(0);
+            if (newMove != 'a' || newMove != 'd' || newMove != 'w' || newMove != 's'){
+                System.out.println("Please only choose the 4 provided letters!");
+            }
+
         }
 
 
     }
-        public void gameOver () {
-            System.out.println("GAME OVER!");
-        }
 
 }
 

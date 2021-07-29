@@ -218,6 +218,7 @@ public class Board {
         word = scanner.next().toLowerCase();
         newMove = word.toLowerCase().charAt(0);
         if (word.length() >= 2) {
+            System.out.println(word + " is a word! ");
             newMove = ' ';
             System.out.println("You cannot type words! Please only choose the 4 provided letters!");
         }

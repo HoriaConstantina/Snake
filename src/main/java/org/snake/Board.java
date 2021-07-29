@@ -101,7 +101,7 @@ public class Board {
 
         printScore();
         System.out.println();
-        System.out.println("##############################################");
+        System.out.println("###############################################");
         System.out.println();
         System.out.println("Please enter your next move (w, a, s or d): ");
         word = scanner.next().toLowerCase();
@@ -212,7 +212,7 @@ public class Board {
 
         printScore();
         System.out.println();
-        System.out.println("##############################################");
+        System.out.println("###############################################");
         System.out.println();
         System.out.println("Please enter your next move (w, a, s or d): ");
         word = scanner.next().toLowerCase();
